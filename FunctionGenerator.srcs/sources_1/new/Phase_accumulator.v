@@ -20,20 +20,27 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Phase_accumulator #(
-    parameter PHASE_WIDTH = 32
+module phase_accumulator #(
+    parameter ADDR_WIDTH = 13       // 8192 próbek => 13-bitowy adres
 )(
-    input wire clk,
-    input wire reset,
-    input wire [PHASE_WIDTH-1:0] phase_inc, // phase increment input
-    output reg [PHASE_WIDTH-1:0] phase_out  // full phase output
+    input  wire                 clk,          // LS_CLK
+    input  wire                 reset,        // reset synchroniczny
+    input  wire [ADDR_WIDTH-1:0] phase_step,  // krok fazowy
+    output reg  [ADDR_WIDTH-1:0] addr         // adres wyjœciowy do pamiêci
 );
 
-    always @(posedge clk or posedge reset) begin
-        if (reset)
-            phase_out <= 0;
-        else
-            phase_out <= phase_out + phase_inc;
+    reg [ADDR_WIDTH-1:0] phase_acc;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            phase_acc <= 0;
+        end else begin
+            phase_acc <= phase_acc + phase_step;
+        end
+    end
+
+    always @(*) begin
+        addr = phase_acc;
     end
 
 endmodule
