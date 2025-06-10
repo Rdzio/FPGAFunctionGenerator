@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Serializer_8_to_1_TB;
+module serializer_8_to_1_tb;
 
     reg CLKin = 0;
     reg CLKDIVin = 0;
@@ -35,7 +35,7 @@ module Serializer_8_to_1_TB;
     always #4 CLKDIVin = ~CLKDIVin; // 125 MHz
 
     // Instantiate the DUT
-    Serializer_8_to_1 uut (
+    serializer_8_to_1 uut (
         .CLKin(CLKin),
         .CLKDIVin(CLKDIVin),
         .CE(CE),

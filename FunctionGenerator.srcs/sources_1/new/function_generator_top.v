@@ -94,7 +94,7 @@ module waveform_generator_top (
     genvar i;
     generate
         for (i = 0; i < 8; i = i + 1) begin : serializers
-            Serializer_8_to_1 ser_inst (
+            serializer_8_to_1 ser_inst (
                 .CLKin    (HS_CLK),
                 .CLKDIVin (LS_CLK),
                 .CE       (1'b1),

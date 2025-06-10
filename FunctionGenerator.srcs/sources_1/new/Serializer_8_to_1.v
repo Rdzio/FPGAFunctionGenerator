@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Serializer_8_to_1(
+module serializer_8_to_1(
     input CLKin,
     input CLKDIVin,
     input CE,

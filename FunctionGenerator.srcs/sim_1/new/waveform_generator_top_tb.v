@@ -87,9 +87,14 @@ module waveform_generator_top_tb;
         reset = 0;
 
         // Write triangle waveform to memory (example: ramping pattern)
-        for (i = 0; i < 32; i = i + 1) begin
+        for (i = 0; i < 128; i = i + 1) begin
             write_sample(i[12:0], {8*i, 8*i, 8*i, 8*i, 8*i, 8*i, 8*i, 8*i});
         end
+        
+        #20
+        reset = 1;
+        #20
+        reset = 0;
     
         // przyk³adowy task write_sample, do zast¹pienia Twoj¹ implementacj¹
     
